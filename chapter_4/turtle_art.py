@@ -1,12 +1,14 @@
 import turtle
-
-def spiral(pen, llen):
+def spiral(pen, llen, res):
     if llen >= 0:
         pen.forward(llen)
         pen.right(90)
-        spiral(pen, llen-5)
+        res.append(spiral(pen, llen-5, res))
 
 pen = turtle.Turtle()
 paper = turtle.Screen()
-spiral(pen, 200)
+res = []
+spiral(pen, 100, res)
+print(res)
+print(len(res))
 paper.exitonclick()
