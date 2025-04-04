@@ -1,4 +1,4 @@
-def search(self, nums: List[int], target: int) -> int:
+def search(nums, target) -> int:
     l = 0
     r = len(nums) - 1
     while l <= r:
@@ -10,3 +10,8 @@ def search(self, nums: List[int], target: int) -> int:
         else:
             r = mid - 1
     return -1
+
+if __name__ == "__main__":
+    nums = [-1,0,3,5,9,12]
+    target = 9
+    print(search(nums, target))
