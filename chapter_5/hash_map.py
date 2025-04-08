@@ -30,6 +30,24 @@ class HashTable:
                     self.data[rehash_code] = value
     
     
+    def delete(self, key):
+        hash_code = self.hashing(key, len(self.slots))
+        
+        position = hash_code
+        while self.slots[position] is not None:
+            if self.slots[position] == key:
+                print(f"{self.slots[position]} -- {self.data[position]}  is deleted successfully")
+                self.slots[position] = None
+                self.data[position] = None
+                return
+            else:
+                position = self.linear_probing(position, len(self.slots))
+            
+            if position == hash_code:
+                break
+        raise ValueError("Element not found...")
+    
+    
     def get(self, key):
         """Return the value associated"""
         hash_code = self.hashing(key, len(self.slots))
@@ -68,13 +86,10 @@ class HashTable:
         return res
 
 a = HashTable()
-a.put(1, 11)
-a.put(2, 22)
-a.put(0, 100)
-a.put(3, 33)
-a.put(4, 44)
-a.put(1, 1100)
-a.put(22, 2202)
-res, com = a.get(22)
-print(res, " -- ", com)
+a.put(61, 11)
+a.put(62, 22)
+a.put(60, 100)
+a.put(63, 33)
+a.put(64, 44)
+a.delete(64)
 print(a.show())
